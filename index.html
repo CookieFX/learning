@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CFx VFx Studio – Learning Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F2F5FB;--sf:#fff;--ink:#14213D;--mut:#55627D;--line:#D9E0EE;--ac:#2B50E6;--aci:#fff;--mk:#FFC93C;--ok:#1E8E5A;
+--hd:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;--bd:'Source Sans 3','Segoe UI',system-ui,sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1424;--sf:#172038;--ink:#EAF0FF;--mut:#9AA9C8;--line:#2A3556;--ac:#7C9BFF;--aci:#0E1424;--ok:#4FD08F;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0E1424;--sf:#172038;--ink:#EAF0FF;--mut:#9AA9C8;--line:#2A3556;--ac:#7C9BFF;--aci:#0E1424;--ok:#4FD08F;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 var(--bd)}
+:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.w{max-width:1040px;margin:0 auto;padding:0 20px}
+.top{display:flex;align-items:center;justify-content:space-between;padding:16px 0;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;font:800 22px var(--hd);letter-spacing:-.02em;text-decoration:none;color:inherit}
+.logo{height:36px;width:36px;border-radius:9px;object-fit:cover}
+.badge{display:grid;place-items:center;width:36px;height:36px;border-radius:9px 9px 9px 0;background:var(--mk);color:#14213D;font:800 20px var(--hd)}
+.btn{display:inline-block;border:0;border-radius:10px;padding:10px 16px;font:600 16px var(--bd);cursor:pointer;text-decoration:none;background:var(--ac);color:var(--aci)}
+.btn.alt{background:transparent;color:var(--ink);border:1.5px solid var(--line)}.btn.alt:hover{border-color:var(--ink)}
+.btn[aria-disabled="true"]{opacity:.45;pointer-events:none}
+.btn.sm{padding:6px 12px;font-size:15px}
+h1{font:800 clamp(30px,5.5vw,50px)/1.05 var(--hd);letter-spacing:-.03em;margin:26px 0 10px}
+h2{font:800 26px var(--hd);letter-spacing:-.02em;margin:34px 0 14px}
+.lead{color:var(--mut);font-size:19px;max-width:52ch;margin:0 0 22px}
+.hello{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:6px}
+input[type=text],input[type=search]{font:400 16px var(--bd);color:var(--ink);background:var(--sf);border:1.5px solid var(--line);border-radius:9px;padding:9px 12px;min-width:0}
+.resume{background:var(--ink);color:var(--bg);border-radius:14px;padding:20px;display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin:18px 0}
+.resume small{display:block;opacity:.7}.resume b{font:700 21px var(--hd)}
+.resume .btn{background:var(--mk);color:#14213D}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px}
+.card{background:var(--sf);border:1.5px solid var(--line);border-radius:14px;padding:20px;display:flex;flex-direction:column;text-decoration:none;color:inherit}
+.card:hover{border-color:var(--ac)}
+.tag{align-self:flex-start;background:var(--mk);color:#14213D;font-weight:600;font-size:13px;padding:2px 10px;border-radius:6px;margin-bottom:10px}
+.card h3{font:700 21px/1.2 var(--hd);margin:0 0 4px}.card .by{color:var(--mut);font-size:15px;margin:0 0 10px}.card p.d{margin:0 0 14px;flex:1}
+.bar{height:8px;background:var(--line);border-radius:99px;overflow:hidden}.bar i{display:block;height:100%;background:var(--ok);width:0}
+.pct{font-size:14px;color:var(--mut);margin-top:6px}
+.crumb{display:inline-block;margin:18px 0 0;color:var(--mut);text-decoration:none;font-weight:600}
+.head{display:flex;gap:20px;flex-wrap:wrap;justify-content:space-between;align-items:flex-end}
+.acts{display:flex;gap:8px;flex-wrap:wrap}
+.mod{background:var(--sf);border:1.5px solid var(--line);border-radius:14px;margin-bottom:14px;overflow:hidden}
+.mod h3{font:700 19px var(--hd);margin:0;padding:14px 18px;border-bottom:1.5px solid var(--line);display:flex;justify-content:space-between;gap:10px}
+.mod h3 span{font:400 15px var(--bd);color:var(--mut)}
+.les{display:flex;align-items:center;gap:12px;padding:11px 18px;border-bottom:1px solid var(--line)}
+.les:last-child{border:0}
+.les input{width:22px;height:22px;accent-color:var(--ok);flex:none}
+.les .t{flex:1;min-width:0}.les .t.done{color:var(--mut);text-decoration:line-through}
+.kind{font-size:13px;font-weight:600;color:var(--mut);border:1px solid var(--line);border-radius:6px;padding:1px 8px}
+.empty{padding:28px;border:1.5px dashed var(--line);border-radius:14px;color:var(--mut)}
+.set{margin:34px 0;padding:14px 18px;background:var(--sf);border:1.5px solid var(--line);border-radius:14px}
+.set summary{cursor:pointer;font:700 18px var(--hd)}.set .r{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;align-items:center}
+footer{border-top:1.5px solid var(--line);margin-top:40px;padding:20px 0 30px;color:var(--mut);font-size:15px}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:10px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .2s}.toast.on{opacity:1}
+.acts2{display:flex;gap:8px;align-items:center}
+.fld{margin-bottom:12px}.fld label{display:block;font-weight:600;font-size:15px;margin-bottom:4px}
+.fld input,.fld textarea,.sel{width:100%;font:400 16px var(--bd);color:var(--ink);background:var(--sf);border:1.5px solid var(--line);border-radius:9px;padding:9px 12px}
+.panel{background:var(--sf);border:1.5px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:14px}
+.panel>summary{cursor:pointer;font:700 19px var(--hd)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.lrow{display:grid;grid-template-columns:1.4fr .7fr 1.6fr auto;gap:8px;margin-bottom:8px;align-items:center}
+.lrow input{width:100%;font:400 15px var(--bd);color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:8px;padding:7px 10px;min-width:0}
+.msub{border-top:1.5px solid var(--line);margin-top:14px;padding-top:14px}
+.msub .mh{display:flex;gap:8px;align-items:flex-end;margin-bottom:10px}.msub .mh .fld{flex:1;margin:0}
+.danger{color:#C0392B;border-color:#C0392B}
+textarea.code{font:14px/1.4 ui-monospace,Consolas,monospace;min-height:120px;width:100%;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:9px;padding:10px}
+@media(max-width:700px){.two{grid-template-columns:1fr}.lrow{grid-template-columns:1fr 1fr}.lrow input:nth-child(3){grid-column:1/-1}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="w">
+  <header class="top">
+    <a class="brand" href="#home"><span id="logoSlot"></span><span id="brand"></span></a>
+    <span class="acts2"><a class="btn alt sm" href="https://classroom.google.com" target="_blank" rel="noopener">Google Classroom</a><a class="btn sm" href="#edit-page">Settings</a></span>
+  </header>
+  <main id="app"></main>
+
+  <footer id="foot"></footer>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* ===== EDIT HERE: names and text ===== */
+const DEFAULTS_SITE={
+  academyName:"CFx VFx Studio",
+  headline:"Learn at your own pace, all in one place.",
+  intro:"Open a course, work through the lessons, and tick them off as you go. Class chat and live sessions happen in Google Classroom.",
+  footer:"Powered by Google Classroom and Google Drive."
+};
+/* ===== EDIT HERE: courses =====
+   type: "Slides", "Video", "Reading", "Quiz", "Assignment" (any label works)
+   url: Drive file link, YouTube link, Google Form link, etc. (must start with https://) */
+const DEFAULTS_COURSES=[
+ {title:"Introduction to Python",teacher:"Your name",subject:"Programming",
+  desc:"Variables, loops, functions and a small project. Weekly live session on Meet.",
+  classroom:"https://classroom.google.com",drive:"https://drive.google.com",
+  modules:[
+   {name:"Week 1: Getting started",lessons:[
+     {title:"Welcome and course plan",type:"Slides",url:"https://drive.google.com"},
+     {title:"Install Python",type:"Video",url:"https://drive.google.com"},
+     {title:"Quiz: the basics",type:"Quiz",url:"https://forms.google.com"}]},
+   {name:"Week 2: Loops and functions",lessons:[
+     {title:"Loops explained",type:"Video",url:"https://drive.google.com"},
+     {title:"Practice worksheet",type:"Assignment",url:"https://classroom.google.com"}]}]},
+ {title:"Spoken English Practice",teacher:"Your name",subject:"Languages",
+  desc:"Speaking drills, vocabulary sets and recorded feedback.",
+  classroom:"https://classroom.google.com",drive:"https://drive.google.com",
+  modules:[{name:"Unit 1: Everyday conversation",lessons:[
+     {title:"Greetings and small talk",type:"Video",url:"https://drive.google.com"},
+     {title:"Vocabulary list",type:"Reading",url:"https://drive.google.com"}]}]},
+ {title:"Class 10 Mathematics",teacher:"Your name",subject:"School",
+  desc:"Chapter notes, worksheets and quizzes with automatic grading.",
+  classroom:"https://classroom.google.com",drive:"https://drive.google.com",
+  modules:[{name:"Chapter 1: Real numbers",lessons:[
+     {title:"Chapter notes",type:"Reading",url:"https://drive.google.com"},
+     {title:"Chapter test",type:"Quiz",url:"https://forms.google.com"}]}]}
+];
+/* ===== end of editable area ===== */
+const DK="lms_data_v3";
+const clone=o=>JSON.parse(JSON.stringify(o));
+let D=(function(){try{const x=JSON.parse(localStorage.getItem(DK));if(x&&x.site&&Array.isArray(x.courses))return x;}catch(e){}return{site:clone(DEFAULTS_SITE),courses:clone(DEFAULTS_COURSES)};})();
+function persist(){try{localStorage.setItem(DK,JSON.stringify(D));}catch(e){toast("Could not save in this browser.");}}
+
+const $=id=>document.getElementById(id);
+const PK="lms_progress_v2",NK="lms_name_v2",LK="lms_logo_v2";
+let prog={},last=null;
+try{prog=JSON.parse(localStorage.getItem(PK)||"{}")||{};}catch(e){prog={};}
+const lg=(k)=>{try{return localStorage.getItem(k)}catch(e){return null}};
+const ls=(k,v)=>{try{v===null?localStorage.removeItem(k):localStorage.setItem(k,v)}catch(e){toast("Could not save in this browser.")}};
+function saveP(){ls(PK,JSON.stringify(prog));}
+function toast(m){const t=$("toast");t.textContent=m;t.classList.add("on");setTimeout(()=>t.classList.remove("on"),2200);}
+function safe(u){try{return new URL(u).protocol==="https:"?u:"";}catch(e){return "";}}
+function h(tag,attrs,...kids){const e=document.createElement(tag);
+  for(const k in(attrs||{})){if(k==="class")e.className=attrs[k];else if(k.startsWith("on"))e[k]=attrs[k];else e.setAttribute(k,attrs[k]);}
+  kids.flat().forEach(c=>{if(c==null)return;e.append(c.nodeType?c:document.createTextNode(c));});return e;}
+const key=(ci,mi,li)=>ci+"-"+mi+"-"+li;
+function stats(ci){let n=0,d=0,next=null;
+  D.courses[ci].modules.forEach((m,mi)=>m.lessons.forEach((l,li)=>{n++;if(prog[key(ci,mi,li)])d++;else if(!next)next={mi,li,l};}));
+  return{n,d,pct:n?Math.round(d/n*100):0,next};}
+function bar(p){return h("div",{class:"bar",role:"progressbar","aria-valuenow":p,"aria-valuemin":0,"aria-valuemax":100},h("i",{style:"width:"+p+"%"}));}
+
+function brand(){
+  $("brand").textContent=D.site.academyName;document.title=D.site.academyName+" – Learning Portal";
+  $("foot").textContent=D.site.footer;
+  const slot=$("logoSlot");slot.innerHTML="";const lo=lg(LK);
+  if(lo&&lo.startsWith("data:image/")){const i=h("img",{class:"logo",alt:"",src:lo});slot.append(i);}
+  else slot.append(h("span",{class:"badge"},D.site.academyName.charAt(0)));
+}
+function home(){
+  const app=$("app");app.innerHTML="";
+  const nm=lg(NK);
+  app.append(h("h1",null,nm?("Welcome back, "+nm+"."):D.site.headline),h("p",{class:"lead"},D.site.intro));
+  const q=h("input",{type:"search",placeholder:"Search courses","aria-label":"Search courses"});
+  let target=null;
+  if(last!==null&&D.courses[last]){const s=stats(last);if(s.next)target=last;}
+  if(target!==null){const s=stats(target);
+    app.append(h("div",{class:"resume"},h("div",null,h("small",null,"Continue learning"),h("b",null,s.next.l.title),h("small",null,D.courses[target].title+" · "+s.pct+"% complete")),
+      h("a",{class:"btn",href:"#course-"+target},"Resume")));}
+  app.append(h("h2",null,"Courses"),q);
+  const g=h("div",{class:"grid",style:"margin-top:16px"});app.append(g);
+  function draw(){g.innerHTML="";const t=q.value.toLowerCase();let c=0;
+    D.courses.forEach((co,ci)=>{if(t&&!(co.title+co.teacher+co.subject+co.desc).toLowerCase().includes(t))return;c++;
+      const s=stats(ci);
+      g.append(h("a",{class:"card",href:"#course-"+ci},h("span",{class:"tag"},co.subject),h("h3",null,co.title),
+        h("p",{class:"by"},co.teacher?"Taught by "+co.teacher:""),h("p",{class:"d"},co.desc),bar(s.pct),h("div",{class:"pct"},s.d+" of "+s.n+" lessons done")));});
+    if(!c)g.append(h("div",{class:"empty"},"No courses match your search."));}
+  q.addEventListener("input",draw);draw();
+}
+function course(ci){
+  const co=D.courses[ci],app=$("app");app.innerHTML="";
+  if(!co){location.hash="home";return;}
+  last=ci;ls("lms_last_v2",String(ci));
+  const s=stats(ci);
+  const cl=safe(co.classroom),dr=safe(co.drive);
+  app.append(h("a",{class:"crumb",href:"#home"},"Back to all courses"));
+  app.append(h("div",{class:"head"},
+    h("div",null,h("h1",{style:"margin-bottom:6px"},co.title),h("p",{class:"lead",style:"margin:0"},co.desc)),
+    h("div",{class:"acts"},
+      h("a",{class:"btn",href:cl||"#",target:"_blank",rel:"noopener","aria-disabled":cl?"false":"true"},"Open Classroom"),
+      h("a",{class:"btn alt",href:dr||"#",target:"_blank",rel:"noopener","aria-disabled":dr?"false":"true"},"Course files"))));
+  app.append(h("div",{style:"margin:22px 0 6px"},bar(s.pct),h("div",{class:"pct"},s.d+" of "+s.n+" lessons done ("+s.pct+"%)"+(s.pct===100?" – course complete":""))));
+  co.modules.forEach((m,mi)=>{
+    const done=m.lessons.filter((_,li)=>prog[key(ci,mi,li)]).length;
+    const box=h("section",{class:"mod"},h("h3",null,m.name,h("span",null,done+"/"+m.lessons.length)));
+    m.lessons.forEach((l,li)=>{
+      const k=key(ci,mi,li),u=safe(l.url);
+      const cb=h("input",{type:"checkbox","aria-label":"Mark done: "+l.title});cb.checked=!!prog[k];
+      cb.onchange=()=>{if(cb.checked)prog[k]=1;else delete prog[k];saveP();course(ci);};
+      box.append(h("div",{class:"les"},cb,h("span",{class:"t"+(prog[k]?" done":"")},l.title),h("span",{class:"kind"},l.type||"Lesson"),
+        h("a",{class:"btn alt sm",href:u||"#",target:"_blank",rel:"noopener","aria-disabled":u?"false":"true"},"Open")));
+    });
+    app.append(box);
+  });
+  window.scrollTo(0,0);
+}
+let uid=0;const openC=new Set();
+function fld(label,obj,prop,o){o=o||{};const id="f"+(uid++);
+  const el=h(o.area?"textarea":"input",o.area?{id,rows:"2"}:{id,type:"text"});
+  if(o.ph)el.setAttribute("placeholder",o.ph);el.value=obj[prop]||"";
+  el.addEventListener("input",()=>{obj[prop]=el.value;persist();if(o.live)brand();});
+  return h("div",{class:"fld"},h("label",{for:id},label),el);}
+function clearProg(ci){Object.keys(prog).forEach(k=>{if(ci===null||k.startsWith(ci+"-"))delete prog[k];});saveP();}
+function twice(btn,fn,txt){let armed=false,t;const orig=btn.textContent;
+  btn.onclick=()=>{if(!armed){armed=true;btn.textContent=txt||"Click again to confirm";t=setTimeout(()=>{armed=false;btn.textContent=orig;},3000);}else{clearTimeout(t);fn();}};return btn;}
+function redraw(){const y=window.scrollY;settings();window.scrollTo(0,y);}
+function settings(){
+  const app=$("app");app.innerHTML="";
+  app.append(h("a",{class:"crumb",href:"#home"},"Done, back to portal"),h("h1",{style:"margin-bottom:6px"},"Settings"),
+    h("p",{class:"lead"},"Change any text or course detail. Changes save automatically in this browser."));
+  const pg=h("details",{class:"panel",open:""},h("summary",null,"Page text"));
+  [["Academy name","academyName",{live:1}],["Headline","headline"],["Intro text","intro",{area:1}],["Footer text","footer",{live:1,area:1}]]
+   .forEach(r=>pg.append(fld(r[0],D.site,r[1],r[2])));
+  app.append(pg);
+  const me=h("details",{class:"panel"},h("summary",null,"Logo and student name"));
+  const nm=h("input",{type:"text",maxlength:"40",placeholder:"Student name"});nm.value=lg(NK)||"";
+  nm.addEventListener("change",()=>{ls(NK,nm.value.trim()||null);toast("Name saved");});
+  const lf=h("input",{type:"file",accept:"image/*"});
+  lf.addEventListener("change",()=>{const f=lf.files[0];if(!f)return;if(f.size>400000){toast("Logo too large. Use an image under 400 KB.");return;}
+    const r=new FileReader();r.onload=()=>{ls(LK,r.result);brand();toast("Logo saved");};r.readAsDataURL(f);});
+  const lc=h("button",{class:"btn alt sm",type:"button"},"Remove logo");lc.onclick=()=>{ls(LK,null);brand();toast("Logo removed");};
+  const rp=h("button",{class:"btn alt sm danger",type:"button"},"Reset my progress");twice(rp,()=>{clearProg(null);ls("lms_last_v2",null);last=null;toast("Progress reset");});
+  me.append(h("div",{class:"fld"},h("label",null,"Student name (shows in the welcome line)"),nm),
+    h("div",{class:"fld"},h("label",null,"Academy logo (image under 400 KB)"),lf,lc),h("div",{class:"fld"},rp));
+  app.append(me);
+  app.append(h("h2",null,"Courses"));
+  D.courses.forEach((co,ci)=>{
+    const p=h("details",{class:"panel"},h("summary",null,co.title||"Untitled course"));
+    if(openC.has(ci))p.setAttribute("open","");
+    p.addEventListener("toggle",()=>{p.open?openC.add(ci):openC.delete(ci);});
+    p.append(h("div",{class:"two"},fld("Course title",co,"title"),fld("Teacher",co,"teacher")),
+      h("div",{class:"two"},fld("Subject (filter label)",co,"subject"),fld("Classroom invite link (https://…)",co,"classroom")),
+      fld("Description",co,"desc",{area:1}),fld("Drive folder link (https://…)",co,"drive"));
+    co.modules.forEach((m,mi)=>{
+      const ms=h("div",{class:"msub"});
+      const del=h("button",{class:"btn alt sm danger",type:"button"},"Delete module");twice(del,()=>{co.modules.splice(mi,1);clearProg(ci);persist();redraw();});
+      ms.append(h("div",{class:"mh"},fld("Module name",m,"name"),del));
+      m.lessons.forEach((l,li)=>{
+        const mk=(prop,ph)=>{const i=h("input",{type:"text","aria-label":ph,placeholder:ph});i.value=l[prop]||"";i.addEventListener("input",()=>{l[prop]=i.value;persist();});return i;};
+        const x=h("button",{class:"btn alt sm danger",type:"button","aria-label":"Delete lesson"},"Delete");
+        twice(x,()=>{m.lessons.splice(li,1);clearProg(ci);persist();redraw();},"Sure?");
+        ms.append(h("div",{class:"lrow"},mk("title","Lesson title"),mk("type","Type (Video…)"),mk("url","Link https://…"),x));});
+      const al=h("button",{class:"btn alt sm",type:"button"},"Add lesson");
+      al.onclick=()=>{m.lessons.push({title:"New lesson",type:"Video",url:""});persist();openC.add(ci);redraw();};
+      ms.append(al);p.append(ms);});
+    const am=h("button",{class:"btn alt sm",type:"button",style:"margin:14px 8px 0 0"},"Add module");
+    am.onclick=()=>{co.modules.push({name:"New module",lessons:[]});persist();openC.add(ci);redraw();};
+    const dc=h("button",{class:"btn alt sm danger",type:"button",style:"margin-top:14px"},"Delete course");
+    twice(dc,()=>{D.courses.splice(ci,1);clearProg(null);persist();openC.clear();redraw();});
+    p.append(am,dc);app.append(p);});
+  const ac=h("button",{class:"btn",type:"button"},"Add course");
+  ac.onclick=()=>{D.courses.push({title:"New course",teacher:"",subject:"General",desc:"",classroom:"",drive:"",modules:[{name:"Module 1",lessons:[]}]});
+    persist();openC.clear();openC.add(D.courses.length-1);redraw();};
+  app.append(ac);
+  const bk=h("details",{class:"panel",style:"margin-top:26px"},h("summary",null,"Backup, share and import"));
+  const ex=h("textarea",{class:"code",readonly:"","aria-label":"Exported data"});ex.value=JSON.stringify(D,null,1);
+  const cp=h("button",{class:"btn alt sm",type:"button",style:"margin:8px 0 16px"},"Copy backup");
+  cp.onclick=()=>{ex.value=JSON.stringify(D,null,1);ex.select();
+    (navigator.clipboard?navigator.clipboard.writeText(ex.value):Promise.reject()).then(()=>toast("Backup copied"),()=>toast("Select the text and copy it manually"));};
+  const im=h("textarea",{class:"code","aria-label":"Paste backup to import",placeholder:"Paste a backup here"});
+  const ap=h("button",{class:"btn alt sm",type:"button",style:"margin:8px 8px 0 0"},"Import backup");
+  ap.onclick=()=>{try{const x=JSON.parse(im.value);if(!x.site||!Array.isArray(x.courses))throw 0;D=x;persist();brand();clearProg(null);toast("Imported");redraw();}catch(e){toast("That is not a valid backup");}};
+  const rs=h("button",{class:"btn alt sm danger",type:"button",style:"margin-top:8px"},"Restore original text");
+  twice(rs,()=>{D={site:clone(DEFAULTS_SITE),courses:clone(DEFAULTS_COURSES)};persist();clearProg(null);brand();toast("Restored");redraw();});
+  bk.append(h("p",{style:"color:var(--mut);font-size:15px;margin:10px 0 0"},"Settings are stored only in this browser. Copy the backup to move them to another device, or send it to whoever maintains the page to make them permanent for all students."),
+    h("div",{class:"fld",style:"margin-top:12px"},h("label",null,"Your backup"),ex),cp,im,ap,rs);
+  app.append(bk);window.scrollTo(0,0);
+}
+function route(){
+  const hs=location.hash.replace("#","");
+  if(hs==="edit-page")settings();else if(hs.startsWith("course-"))course(parseInt(hs.slice(7),10));else home();
+}
+window.addEventListener("hashchange",route);
+const lc=lg("lms_last_v2");if(lc!==null)last=parseInt(lc,10);
+brand();route();
+</script>
+</body>
+</html>
